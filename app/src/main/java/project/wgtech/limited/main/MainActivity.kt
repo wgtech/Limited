@@ -1,8 +1,7 @@
-package project.wgtech.limited
+package project.wgtech.limited.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     private val TAG = MainActivity::class.simpleName

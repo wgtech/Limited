@@ -17,8 +17,8 @@ ext {
     navigationVersion = '2.2.1'
     recyclerViewVersion = '1.1.0'
     recyclerViewSelectionVersion = '1.1.0-rc01'
-    fragmentVersion = '1.2.1'
-    materialVersion = '1.2.0-alpha04'
+    fragmentVersion = '1.2.2'
+    materialVersion = '1.2.0-alpha05'
     ktxVersion = '1.2.0'
     jUnitVersion = '4.12'
     jUnitExtVersion = '1.1.0'
@@ -30,6 +30,7 @@ ext {
     okhttpVersion = '4.2.2'
     glideVersion = '4.10.0'
     gsonVersion = '2.8.6'
+    rxAndroidVersion = '3.0.0'
 }
 
 buildscript {

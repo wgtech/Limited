@@ -4,10 +4,22 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    viewBinding {
+        enabled = true
     }
 
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -16,14 +28,55 @@ android {
         applicationId rootProject.ext.applicationId
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
-        versionName rootProject.ext.versionName
+        versionCode rootProject.ext.releaseVersionCode
+        versionName rootProject.ext.releaseVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    signingConfigs {
         release {
+            storeFile file(SIGNED_STORE_FILE)
+            storePassword SIGNED_STORE_PASSWORD
+            keyAlias SIGNED_KEY_ALIAS
+            keyPassword SIGNED_KEY_PASSWORD
+        }
+    }
+
+    flavorDimensions "version"
+    productFlavors {
+        sprint {
+            dimension "version"
+            manifestPlaceholders = [
+                    appLabel: "LMTD_Sprint"
+            ]
+            applicationId rootProject.ext.applicationId
+            versionCode rootProject.ext.sprintVersionCode
+            versionName rootProject.ext.sprintVersionName
+            //buildConfigField "String", "EXPLAIN", "\"This is SPRINT-FLAVOR application\""
+            //resValue "string", "appName", "LMTD_SB"
+        }
+        product {
+            dimension "version"
+            applicationId rootProject.ext.applicationId
+            versionCode rootProject.ext.releaseVersionCode
+            versionName rootProject.ext.releaseVersionName
+            //buildConfigField "String", "EXPLAIN", "\"This is RELEASE-FLAVOR application\""
+            //resValue "string", "appName", "LMTD"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable false
             minifyEnabled false
+            shrinkResources false
+        }
+
+        release {
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -40,14 +93,17 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:${rootProject.ext.recyclerViewVersion}"
     implementation "androidx.recyclerview:recyclerview-selection:${rootProject.ext.recyclerViewSelectionVersion}"
     implementation "androidx.fragment:fragment-ktx:${rootProject.ext.fragmentVersion}"
-    implementation "androidx.fragment:fragment-testing:${rootProject.ext.fragmentVersion}"
+    implementation "androidx.viewpager2:viewpager2:${rootProject.ext.viewPagerVersion}"
     implementation "androidx.core:core-ktx:${rootProject.ext.ktxVersion}"
     implementation "com.google.android.material:material:${rootProject.ext.materialVersion}"
     implementation "com.airbnb.android:lottie:${rootProject.ext.lottieVersion}"
     implementation "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
     implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
+    implementation "io.reactivex.rxjava3:rxandroid:${rootProject.ext.rxAndroidVersion}"
+    implementation "io.reactivex.rxjava3:rxjava:${rootProject.ext.rxAndroidVersion}"
 
+    debugImplementation "androidx.fragment:fragment-testing:${rootProject.ext.fragmentVersion}"
     testImplementation "junit:junit:${rootProject.ext.jUnitVersion}"
     androidTestImplementation "androidx.test.ext:junit:${rootProject.ext.jUnitExtVersion}"
     androidTestImplementation "androidx.test.espresso:espresso-core:${rootProject.ext.espressoVersion}"

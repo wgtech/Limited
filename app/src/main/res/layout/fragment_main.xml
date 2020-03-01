@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="fragment"
+            type="project.wgtech.limited.main.MainFragment" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2_main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="?android:attr/windowTitleSize"/>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="?android:attr/windowTitleSize"
+            android:background="@color/colorPrimary"
+            app:menu="@menu/menu_main"
+            app:title="@string/app_name"
+            app:titleTextColor="@color/colorWhite" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout_main"
+                android:layout_width="match_parent"
+                android:layout_height="?android:attr/windowTitleSize"
+                app:tabTextColor="@color/colorWhite"
+                app:tabIndicatorColor="@color/colorAccent"
+                app:tabIndicatorGravity="top"
+                app:tabIndicatorHeight="8dp">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabItem_featured"
+                    android:text="@string/main_menu_featured"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabItem_hot"
+                    android:text="@string/main_menu_hot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/tabItem_new"
+                    android:text="@string/main_menu_new"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+            </com.google.android.material.tabs.TabLayout>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

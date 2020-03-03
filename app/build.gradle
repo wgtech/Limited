@@ -52,6 +52,7 @@ android {
             applicationId rootProject.ext.applicationId
             versionCode rootProject.ext.sprintVersionCode
             versionName rootProject.ext.sprintVersionName
+            versionNameSuffix "SB"
             //buildConfigField "String", "EXPLAIN", "\"This is SPRINT-FLAVOR application\""
             //resValue "string", "appName", "LMTD_SB"
         }
@@ -67,7 +68,7 @@ android {
 
     buildTypes {
         debug {
-            debuggable false
+            debuggable true
             minifyEnabled false
             shrinkResources false
         }

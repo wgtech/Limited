@@ -25,6 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="?android:attr/actionBarSize"
             android:background="@color/colorPrimary"
+            android:fitsSystemWindows="true"
             app:menu="@menu/menu_main"
             app:title="@string/app_name"
             app:titleTextColor="@color/colorWhite" />

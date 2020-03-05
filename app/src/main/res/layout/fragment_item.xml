@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/colorPrimary"
+        android:fitsSystemWindows="true"
         app:layout_constrainedHeight="true"
         app:title="@string/app_name"
         app:titleTextColor="@color/colorWhite"

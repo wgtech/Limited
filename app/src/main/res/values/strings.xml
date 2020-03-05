@@ -1,6 +1,7 @@
 <resources>
     <!-- Common -->
     <string name="app_name" translatable="false">LMTD</string>
+    <string name="log_app_update_completed">LTMD app update completed</string>
 
     <!-- Main -->
     <string name="main_menu_featured">Featured</string>

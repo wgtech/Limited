@@ -1,17 +1,20 @@
 package project.wgtech.limited.item
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import project.wgtech.limited.R
-import project.wgtech.limited.databinding.SubItemBinding
+import project.wgtech.limited.databinding.FragmentItemBinding
 
-class ItemFragment() : Fragment(R.layout.sub_item) {
+class ItemFragment : Fragment(R.layout.fragment_item) {
     private val TAG = this.javaClass.simpleName
 
-    private var _binding: SubItemBinding? = null
+    private var _binding: FragmentItemBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var item: Item
@@ -19,6 +22,10 @@ class ItemFragment() : Fragment(R.layout.sub_item) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         item = arguments?.getSerializable("item") as Item
+        requireActivity().onBackPressedDispatcher.addCallback(this) {
+            //findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
+            findNavController().navigateUp()
+        }
     }
 
     override fun onCreateView(
@@ -26,10 +33,15 @@ class ItemFragment() : Fragment(R.layout.sub_item) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = SubItemBinding.inflate(inflater)
-        binding.textViewListTitle.text = item.title
-        binding.textViewListDesc.text = item.description
-
+        _binding = FragmentItemBinding.inflate(inflater)
+        binding.let {
+            it.textViewItemTitle.text = item.title
+            it.textViewItemDesc.text = item.description
+            it.toolbarItem.setNavigationOnClickListener {
+                //findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
+                findNavController().navigateUp()
+            }
+        }
         return binding.root
     }
 
@@ -37,4 +49,5 @@ class ItemFragment() : Fragment(R.layout.sub_item) {
         _binding = null
         super.onDestroyView()
     }
+
 }

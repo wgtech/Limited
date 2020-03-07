@@ -26,7 +26,9 @@
         <action
             android:id="@+id/action_fragment_item_to_fragment_main"
             app:destination="@+id/fragment_main"
-            app:popEnterAnim="@anim/slide_from_left"
-            app:popExitAnim="@anim/slide_to_right" />
+            app:popUpTo="@layout/fragment_main"
+            app:popUpToInclusive="false"
+            app:popEnterAnim="@anim/slide_from_right"
+            app:popExitAnim="@anim/slide_to_left" />
     </fragment>
 </navigation>

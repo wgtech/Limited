@@ -4,12 +4,10 @@ import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.annotation.Nullable
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
-import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.sub_item.view.*
@@ -24,7 +22,7 @@ class ItemListRecyclerAdapter(private var rootBinding: ListItemBinding, @Nullabl
     inner class ItemViewHolder(parent: ViewGroup) : RecyclerView.ViewHolder(
         LayoutInflater.from(parent.context).inflate(R.layout.sub_item, parent, false)) {
 
-        val cardView: CardView = itemView.cardView_item
+        val cardView: CardView = itemView.cardView_list_item
         val imageView: AppCompatImageView = itemView.imageView_list_image
         val textViewTitle: AppCompatTextView = itemView.textView_list_title
         val textViewDesc: AppCompatTextView = itemView.textView_list_desc
@@ -47,7 +45,12 @@ class ItemListRecyclerAdapter(private var rootBinding: ListItemBinding, @Nullabl
                 args.putSerializable("item", item)
 
                 cardView.setOnClickListener {
-                    Navigation.findNavController(rootBinding.root).navigate(R.id.action_fragment_main_to_fragment_item, args);
+//                    val extras = FragmentNavigatorExtras(
+//                        textViewTitle to "textViewTitle",
+//                        textViewDesc to "textViewDesc"
+//                    )
+//                    Navigation.findNavController(rootBinding.root).navigate(R.id.action_fragment_main_to_fragment_item, args, null, extras)
+                    Navigation.findNavController(rootBinding.root).navigate(R.id.action_fragment_main_to_fragment_item, args)
                 }
             }
         }

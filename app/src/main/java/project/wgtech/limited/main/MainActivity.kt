@@ -7,18 +7,12 @@ import project.wgtech.limited.R
 class MainActivity : AppCompatActivity() {
     private val TAG = this.javaClass.simpleName
 
-    private lateinit var listener: OnBackPressedCallback
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
 
-    fun addOnBackPressedCallback(listener: OnBackPressedCallback?) {
-        this.listener = listener!!
-    }
-
-    override fun onBackPressed() {
+    override fun onBackPressed() { // TODO : 앱 종료를 위한 연속 입력 유도 Toast 생성 (미확정)
         super.onBackPressed()
     }
 

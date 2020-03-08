@@ -1,6 +1,5 @@
 package project.wgtech.limited.item
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +22,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         super.onCreate(savedInstanceState)
         item = arguments?.getSerializable("item") as Item
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            //findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
-            findNavController().navigateUp()
+            findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
         }
     }
 
@@ -38,8 +36,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
             it.textViewItemTitle.text = item.title
             it.textViewItemDesc.text = item.description
             it.toolbarItem.setNavigationOnClickListener {
-                //findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
-                findNavController().navigateUp()
+                findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
             }
         }
         return binding.root

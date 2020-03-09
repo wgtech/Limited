@@ -6,8 +6,8 @@
         android:icon="@drawable/round_search_24"
         app:showAsAction="always" />
 
-    <item android:id="@+id/item_filter"
-        android:title="@string/item_filter"
-        android:icon="@drawable/round_filter_list_24"
-        app:showAsAction="always" />
+    <item android:id="@+id/item_view_type_change"
+        android:title="@string/item_view_type_change"
+        android:icon="@drawable/round_view_day_24"
+        app:showAsAction="ifRoom" />
 </menu>

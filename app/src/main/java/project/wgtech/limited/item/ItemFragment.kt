@@ -22,7 +22,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         super.onCreate(savedInstanceState)
         item = arguments?.getSerializable("item") as Item
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
+            findNavController().navigateUp()
         }
     }
 
@@ -36,7 +36,7 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
             it.textViewItemTitle.text = item.title
             it.textViewItemDesc.text = item.description
             it.toolbarItem.setNavigationOnClickListener {
-                findNavController().navigate(R.id.action_fragment_item_to_fragment_main, null)
+                findNavController().navigateUp()
             }
         }
         return binding.root

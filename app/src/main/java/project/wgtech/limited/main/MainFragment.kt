@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -101,9 +102,8 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = titles[position]
-            tab.icon = icons[position]
+            if (position < 3) tab.icon = icons[position]
             tabLayout.isInlineLabel = true
-            viewPager.currentItem = tab.position
         }.attach()
 
         toolbar.setOnMenuItemClickListener(this)

@@ -21,7 +21,7 @@ class SearchFragment(@Nullable val items: MutableList<Item>) : Fragment(R.layout
         savedInstanceState: Bundle?
     ): View? {
         _binding = ListItemBinding.inflate(inflater)
-        binding.recyclerViewList.adapter = ItemListRecyclerAdapter(binding, items)
+        binding.recyclerViewList.adapter = ItemListRecyclerAdapter(requireActivity(), items)
         return binding.root
     }
 

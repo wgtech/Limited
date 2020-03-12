@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import project.wgtech.limited.R
 import project.wgtech.limited.databinding.FragmentItemBinding
@@ -22,7 +23,9 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
         super.onCreate(savedInstanceState)
         item = arguments?.getSerializable("item") as Item
         requireActivity().onBackPressedDispatcher.addCallback(this) {
-            findNavController().navigateUp()
+            Navigation.findNavController(requireActivity(), R.id.fragment_nav_host).popBackStack(R.id.fragment_main, false)
+            // ... OR
+            // Navigation.findNavController(requireActivity(), R.id.fragment_nav_host).navigate(R.id.action_fragment_item_to_fragment_main)
         }
     }
 
@@ -36,7 +39,9 @@ class ItemFragment : Fragment(R.layout.fragment_item) {
             it.textViewItemTitle.text = item.title
             it.textViewItemDesc.text = item.description
             it.toolbarItem.setNavigationOnClickListener {
-                findNavController().navigateUp()
+                Navigation.findNavController(requireActivity(), R.id.fragment_nav_host).popBackStack(R.id.fragment_main, false)
+                // ... OR
+                // Navigation.findNavController(requireActivity(), R.id.fragment_nav_host).navigate(R.id.action_fragment_item_to_fragment_main)
             }
         }
         return binding.root

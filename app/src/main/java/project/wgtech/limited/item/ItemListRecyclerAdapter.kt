@@ -8,13 +8,15 @@ import androidx.annotation.Nullable
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.sub_item.view.*
 import project.wgtech.limited.R
 import project.wgtech.limited.databinding.ListItemBinding
+import project.wgtech.limited.main.MainActivity
 
-class ItemListRecyclerAdapter(private var rootBinding: ListItemBinding, @Nullable var items: MutableList<Item>): RecyclerView.Adapter<ItemListRecyclerAdapter.ItemViewHolder>() {
+class ItemListRecyclerAdapter(private var rootActivity: FragmentActivity, @Nullable var items: MutableList<Item>): RecyclerView.Adapter<ItemListRecyclerAdapter.ItemViewHolder>() {
     private val TAG = this.javaClass.simpleName
 
     private lateinit var context: Context
@@ -49,8 +51,8 @@ class ItemListRecyclerAdapter(private var rootBinding: ListItemBinding, @Nullabl
 //                        textViewTitle to "textViewTitle",
 //                        textViewDesc to "textViewDesc"
 //                    )
-//                    Navigation.findNavController(rootBinding.root).navigate(R.id.action_fragment_main_to_fragment_item, args, null, extras)
-                    Navigation.findNavController(rootBinding.root).navigate(R.id.action_fragment_main_to_fragment_item, args)
+//                    Navigation.findNavController(rootActivity).navigate(R.id.action_fragment_main_to_fragment_item, args, null, extras)
+                    Navigation.findNavController(rootActivity, R.id.fragment_nav_host).navigate(R.id.action_fragment_main_to_fragment_item, args)
                 }
             }
         }

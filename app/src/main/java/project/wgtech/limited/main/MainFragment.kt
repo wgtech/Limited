@@ -122,6 +122,7 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
                 viewPager.adapter = TabsAdapter(childFragmentManager, lifecycle, fragments)
                 callback = OnPageChangedCallback(titles, toolbar)
                 viewPager.registerOnPageChangeCallback(callback)
+                childFragmentManager.executePendingTransactions() // Fix) java.lang.IllegalStateException: Fragment already added
             }
 
             R.id.item_view_type_change -> {

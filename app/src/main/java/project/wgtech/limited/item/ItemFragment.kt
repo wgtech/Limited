@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import project.wgtech.limited.R
 import project.wgtech.limited.databinding.FragmentItemBinding
 

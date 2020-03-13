@@ -98,7 +98,7 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
         callback = OnPageChangedCallback(titles, toolbar)
         viewPager.registerOnPageChangeCallback(callback)
         viewPager.isUserInputEnabled = false
-        viewPager.currentItem = 0
+        viewPager.setCurrentItem(0, false)
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = titles[position]
@@ -119,9 +119,7 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
                 fragments.add(SearchFragment(items4))
                 titles.add("Custom")
                 tabLayout.addTab(tabLayout.newTab().setText(titles[titles.size-1]), fragments.size-1, true)
-                viewPager.adapter = TabsAdapter(childFragmentManager, lifecycle, fragments)
-                callback = OnPageChangedCallback(titles, toolbar)
-                viewPager.registerOnPageChangeCallback(callback)
+                viewPager.adapter?.notifyItemInserted(viewPager.adapter!!.itemCount)
                 childFragmentManager.executePendingTransactions() // Fix) java.lang.IllegalStateException: Fragment already added
             }
 

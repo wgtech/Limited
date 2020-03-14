@@ -1,15 +1,12 @@
 package project.wgtech.limited.main
 
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -98,12 +95,13 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
         callback = OnPageChangedCallback(titles, toolbar)
         viewPager.registerOnPageChangeCallback(callback)
         viewPager.isUserInputEnabled = false
-        viewPager.setCurrentItem(0, false)
+        viewPager.currentItem = 0
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = titles[position]
             if (position < 3) tab.icon = icons[position]
             tabLayout.isInlineLabel = true
+            tabLayout.addOnTabSelectedListener(OnTabSelectedCallback(requireContext(), viewPager))
         }.attach()
 
         toolbar.setOnMenuItemClickListener(this)
@@ -115,20 +113,22 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_search -> {
-                Toast.makeText(context, "Search Icon", Toast.LENGTH_SHORT).show()
                 fragments.add(SearchFragment(items4))
-                titles.add("Custom")
-                tabLayout.addTab(tabLayout.newTab().setText(titles[titles.size-1]), fragments.size-1, true)
+                val title = "Search Keyword"
+                titles.add(title)
+                tabLayout.addTab(
+                    tabLayout.newTab().setTag(title),
+                    fragments.size-1, true)
+
                 viewPager.adapter?.notifyItemInserted(viewPager.adapter!!.itemCount)
                 childFragmentManager.executePendingTransactions() // Fix) java.lang.IllegalStateException: Fragment already added
             }
 
             R.id.item_view_type_change -> {
-                Toast.makeText(context, "ViewType Changed", Toast.LENGTH_SHORT).show()
                 if (isViewTypeList) {
-                    item.icon = context?.getDrawable(R.drawable.round_view_day_24)
-                } else {
                     item.icon = context?.getDrawable(R.drawable.round_view_list_24)
+                } else {
+                    item.icon = context?.getDrawable(R.drawable.round_view_day_24)
                 }
                 isViewTypeList = !isViewTypeList
             }

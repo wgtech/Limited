@@ -14,7 +14,6 @@ class OnPageChangedCallback(private val titles: List<String>, private val toolba
     }
 
     override fun onPageSelected(position: Int) {
-        toolbar.title = titles[position]
         super.onPageSelected(position)
     }
 }

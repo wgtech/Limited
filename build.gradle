@@ -2,8 +2,8 @@
 ext {
     // App Information
     applicationId = "project.wgtech.limited"
-    sprintVersionCode = 000103
-    sprintVersionName = "0.1.3"
+    sprintVersionCode = 000104
+    sprintVersionName = "0.1.4"
     releaseVersionCode = 000100
     releaseVersionName = "0.1"
 

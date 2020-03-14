@@ -1,6 +1,7 @@
 <resources>
     <!-- Common -->
     <string name="app_name" translatable="false">LMTD</string>
+    <string name="log_app_update_completed">LTMD app update completed</string>
 
     <!-- Main -->
     <string name="main_menu_featured">Featured</string>
@@ -14,7 +15,7 @@
     <!-- Item : ItemFragment -->
     <string name="item_search_hint">Input Keyword</string>
     <string name="item_search">Search</string>
-    <string name="item_filter">Filter</string>
+    <string name="item_view_type_change">Change View Type</string>
 
 
 </resources>

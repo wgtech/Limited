@@ -3,22 +3,22 @@ package project.wgtech.limited.main
 import android.content.Context
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.tab_custom_main.view.*
 import project.wgtech.limited.R
 import project.wgtech.limited.databinding.FragmentMainBinding
 import project.wgtech.limited.item.*
 import java.lang.IllegalArgumentException
 
-class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickListener {
+class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickListener, TabLayout.OnTabSelectedListener {
     private val TAG = this.javaClass.simpleName
 
     private var _binding: FragmentMainBinding? = null
@@ -77,6 +77,7 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
         icons = mutableListOf(ContextCompat.getDrawable(context, R.drawable.round_star_outline_24)!!, ContextCompat.getDrawable(context, R.drawable.round_whatshot_24)!!, ContextCompat.getDrawable(context, R.drawable.outline_new_releases_24)!!)
         fragments = mutableListOf(FeaturedItemFragment(items), HotItemFragment(items2), NewItemFragment(items3))
         isViewTypeList = true
+        //requireActivity().window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
     }
 
 
@@ -90,18 +91,20 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
         tabLayout = binding.tabLayoutMain
         toolbar = binding.toolbarMain
         viewPager = binding.viewPager2Main
+        //editText = binding.editTextSearchMain
+        //searchTextWatcher = SearchTextWatcher(requireContext(), editText)
 
         viewPager.adapter = TabsAdapter(childFragmentManager, lifecycle, fragments)
         callback = OnPageChangedCallback(titles, toolbar)
         viewPager.registerOnPageChangeCallback(callback)
         viewPager.isUserInputEnabled = false
         viewPager.currentItem = 0
-
+        //editText.addTextChangedListener(searchTextWatcher)
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             tab.text = titles[position]
             if (position < 3) tab.icon = icons[position]
             tabLayout.isInlineLabel = true
-            tabLayout.addOnTabSelectedListener(OnTabSelectedCallback(requireContext(), viewPager))
+            tabLayout.addOnTabSelectedListener(this)
         }.attach()
 
         toolbar.setOnMenuItemClickListener(this)
@@ -115,10 +118,11 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
             R.id.item_search -> {
                 fragments.add(SearchFragment(items4))
                 val title = "Search Keyword"
-                titles.add(title)
+                titles.add("")
                 tabLayout.addTab(
                     tabLayout.newTab().setTag(title),
                     fragments.size-1, true)
+                tabLayout.getTabAt(titles.size-1)?.select()
 
                 viewPager.adapter?.notifyItemInserted(viewPager.adapter!!.itemCount)
                 childFragmentManager.executePendingTransactions() // Fix) java.lang.IllegalStateException: Fragment already added
@@ -135,6 +139,27 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
             else -> throw IllegalArgumentException()
         }
         return true
+    }
+
+    override fun onTabSelected(tab: TabLayout.Tab?) {
+        viewPager.setCurrentItem(tab!!.position, false)
+    }
+
+    override fun onTabReselected(tab: TabLayout.Tab?) { // 다시 누를시 EditText 활성 화면이 나옴. 그 다음에 대한 후속처리 수행해야함.
+        if (tab!!.position > 2) {
+            val view = LayoutInflater.from(context).inflate(R.layout.tab_custom_main, null)
+            view.editText_title_tab.setText(tab.text)
+            view.imageButton_cancel_tab.setOnClickListener {
+                titles.removeAt(tab.position)
+                fragments.removeAt(tab.position)
+                tabLayout.removeTab(tab)
+            }
+            tab.customView = view
+        }
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab?) {
+        tab?.customView = null
     }
 
     override fun onDestroyView() {

@@ -61,6 +61,20 @@
                     android:text="@string/main_menu_new" />
             </com.google.android.material.tabs.TabLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/textInputLayout_search_main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:focusable="true"
+                android:focusableInTouchMode="true">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editText_search_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="@color/colorWhite"
+                    android:textColorHint="@color/colorWhite" />
+            </com.google.android.material.textfield.TextInputLayout>
+
         </androidx.appcompat.widget.Toolbar>
 
         <androidx.viewpager2.widget.ViewPager2

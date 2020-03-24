@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/item_search"
-        android:title="@string/item_search"
+        android:title="@string/main_menu_search"
         android:icon="@drawable/round_search_24"
         app:showAsAction="always" />
 
     <item android:id="@+id/item_view_type_change"
-        android:title="@string/item_view_type_change"
+        android:title="@string/main_menu_item_view_type_change"
         android:icon="@drawable/round_view_day_24"
         app:showAsAction="ifRoom" />
 </menu>

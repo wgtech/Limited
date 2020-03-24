@@ -2,20 +2,20 @@
     <!-- Common -->
     <string name="app_name" translatable="false">LMTD</string>
     <string name="log_app_update_completed">LTMD app update completed</string>
+    <string name="cancel">Cancel</string>
 
     <!-- Main -->
     <string name="main_menu_featured">Featured</string>
     <string name="main_menu_hot">Hot</string>
     <string name="main_menu_new">New</string>
 
+    <!-- Main : Search / Search TextWatcher -->
+    <string name="main_search_hint">Input Keyword</string>
+    <string name="main_menu_search">Search</string>
+    <string name="main_menu_item_view_type_change">Change View Type</string>
+
     <!-- Item : RecyclerView adapter -->
     <string name="item_sample_title" translatable="false">Title</string>
     <string name="item_sample_description" translatable="false">Description</string>
-
-    <!-- Item : ItemFragment -->
-    <string name="item_search_hint">Input Keyword</string>
-    <string name="item_search">Search</string>
-    <string name="item_view_type_change">Change View Type</string>
-
 
 </resources>

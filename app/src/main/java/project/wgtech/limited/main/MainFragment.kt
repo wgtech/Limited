@@ -116,16 +116,26 @@ class MainFragment : Fragment(R.layout.fragment_main), Toolbar.OnMenuItemClickLi
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         when (item?.itemId) {
             R.id.item_search -> {
+                /**
+                 * TODO
+                 *  Set disable to adding fragment to showing results from user search action.
+                 *  because the part that displays the data must be performed first.
+                 */
+
+                /**
+
                 fragments.add(SearchFragment(items4))
                 val title = "Search Keyword"
                 titles.add("")
                 tabLayout.addTab(
-                    tabLayout.newTab().setTag(title),
-                    fragments.size-1, true)
+                tabLayout.newTab().setTag(title),
+                fragments.size-1, true)
                 tabLayout.getTabAt(titles.size-1)?.select()
 
                 viewPager.adapter?.notifyItemInserted(viewPager.adapter!!.itemCount)
                 childFragmentManager.executePendingTransactions() // Fix) java.lang.IllegalStateException: Fragment already added
+
+                */
             }
 
             R.id.item_view_type_change -> {

@@ -3,6 +3,9 @@
     package="project.wgtech.limited">
 
     <dist:module dist:instant="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="project.wgtech.limited.util.GlobalApplication"
         android:allowBackup="false"

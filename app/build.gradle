@@ -81,6 +81,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main {
+            assets {
+                srcDirs 'src/main/assets', 'src/main/assets/nintendo'
+            }
+        }
+    }
 }
 
 dependencies {
@@ -100,6 +108,8 @@ dependencies {
     implementation "com.google.android.material:material:${rootProject.ext.materialVersion}"
     implementation "com.airbnb.android:lottie:${rootProject.ext.lottieVersion}"
     implementation "com.google.code.gson:gson:${rootProject.ext.gsonVersion}"
+    implementation "com.squareup.okhttp3:okhttp:${rootProject.ext.okhttpVersion}"
+    implementation "com.squareup.okhttp3:logging-interceptor:${rootProject.ext.okhttpVersion}"
     implementation "com.squareup.retrofit2:retrofit:${rootProject.ext.retrofitVersion}"
     implementation "com.squareup.retrofit2:converter-gson:${rootProject.ext.retrofitVersion}"
     implementation "io.reactivex.rxjava3:rxandroid:${rootProject.ext.rxAndroidVersion}"
